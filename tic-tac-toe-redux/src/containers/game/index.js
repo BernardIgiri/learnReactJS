@@ -1,16 +1,37 @@
 import React from 'react'
-import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as gameActions from './containers/gameActions'
+import * as gameActionCreators from '../../actionCreators/gameActionCreators'
+import * as gameModel from '../../model/game'
+import { Game } from '../../components/game'
 
-const Game = props => (
-	<div className="game">
-		<div className="game-board">
-			<Board squares={props.squares}
-			onClick={(i) => props.handleClick(i)}
-		</div>
-		<div className="game-info">
-		</div>
-	</div>
+const GameContainer = (props) => (
+	<Game
+		squares={props.squares}
+		history={props.history}
+		status={props.status}
+		moveTo={props.moveTo}
+		rewindTo={props.rewindTo}
+		/>
 )
+
+const mapStateToProps = state => {
+	const current = state.gameHistory[state.gameHistory.length -1]
+	return ({
+		squares: current,
+		history: state.gameHistory,
+		status: gameModel.status({
+				squares: current,
+				xIsNext: state.gameXIsNext
+			}),
+	})
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+	gameActionCreators
+}, dispatch)
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(GameContainer)

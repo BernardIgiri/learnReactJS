@@ -3,7 +3,7 @@ import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import createHistory from 'history/createBrowserHistory'
-import { combinedReducers } from './reducers'
+import reducers from './reducers'
 
 export const history = createHistory()
 
@@ -28,7 +28,7 @@ const composedEnhancers = compose(
 )
 
 export const store = createStore(
-	combinedReducers,
+	reducers,
 	initialState,
 	composedEnhancers
 )
