@@ -1,7 +1,7 @@
 import * as model from '../model/game'
 import * as gameActions from '../constants/gameActions'
 
-const GAME_INITIAL_STATE = {
+const initialState = {
 	gameHistory: [{
 		squares: Array(9).fill(null)
 	}],
@@ -9,7 +9,7 @@ const GAME_INITIAL_STATE = {
 	gameStepNumber: 0,
 }
 
-export const gameReducer = (state = GAME_INITIAL_STATE, action) => {
+export const gameReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case gameActions.MOVE_TO: {
 				const history = state.gameHistory.slice(0, state.gameStepNumber + 1)
