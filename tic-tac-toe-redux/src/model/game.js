@@ -28,6 +28,12 @@ export const outOfMoves = squares => (
 	!squares.includes(null)
 )
 
+export const invalidMove = (move, squares) => (
+	squares[move] !== null ||
+		outOfMoves(squares) ||
+		calculateWinner(squares) !== null
+)
+
 export const status = ({ squares, xIsNext }) => {
 	const winner = calculateWinner(squares)
 	if (winner === null) {
