@@ -7,16 +7,16 @@ const Welcome = props => (
 	<div>
 		<h1>Welcome To Tic-Tac-Toe</h1>
 		<p>
-			<button onClick={() => props.goPlay()}>Lets Play!</button>
+			<button onClick={() => props.changePage()}>Go to about page via redux</button>
 		</p>
 	</div>
 )
 
-
-const mapStateToProps = state => {}
+const mapStateToProps = state => ({
+})
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-	goPlay: () => push('/game')
+	changePage: () => push('/game')
 }, dispatch)
 
 export default connect(

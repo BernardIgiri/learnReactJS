@@ -16,19 +16,22 @@ const GameContainer = (props) => (
 )
 
 const mapStateToProps = state => {
-	const current = state.gameHistory[state.gameHistory.length -1]
+	const history = state.gameHistory || [Array(9).fill(null)]
+	const step = state.gameStepNumber || 0
+	const squares = history[step]
+	const xIsNext = state.gameXIsNext === true
 	return ({
-		squares: current,
-		history: state.gameHistory,
+		squares,
+		history,
 		status: gameModel.status({
-				squares: current,
-				xIsNext: state.gameXIsNext
+				squares,
+				xIsNext: xIsNext
 			}),
 	})
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-	gameActionCreators
+	...gameActionCreators
 }, dispatch)
 
 export default connect(
