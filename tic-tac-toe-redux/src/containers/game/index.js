@@ -16,10 +16,10 @@ const GameContainer = (props) => (
 )
 
 const mapStateToProps = state => {
-	const history = state.gameHistory
-	const step = state.gameStepNumber
+	const history = state.game.history
+	const step = state.game.stepNumber
 	const squares = history[step].squares
-	const xIsNext = state.gameXIsNext
+	const xIsNext = state.game.xIsNext
 	return ({
 		squares,
 		history,
